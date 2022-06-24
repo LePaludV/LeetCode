@@ -9,8 +9,33 @@ No two characters may map to the same character, but a character may map to itse
 
 /*
 On prend le string s et on doit trouver t en remplacent les caractères.  
-*/
 
+
+
+var isIsomorphic = function (s, t) {
+
+  let dico = [];
+  for (let i = 0; i < s.length; i++) {
+    let car = t[i];
+    let temp = s[i];
+    dico.push(temp); 
+    if (!dico.includes(car) && car !== temp) { 
+      dico.pop(temp)
+      dico.push(car);
+      //console.log(dico);
+      for (let j = i; j < s.length; j++) {
+        if (s[j] === car) {
+          return false;
+        }
+        if (s[j] === temp) {
+          s = s.replace(s[j], car);
+        }
+      }
+    }
+  }
+  return s === t;
+};
+*/
 
 var isIsomorphic = function (s, t) {
   /*  On crée deux dictionnaires : 
